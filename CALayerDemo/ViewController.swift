@@ -13,8 +13,7 @@ class ViewController: UIViewController {
         didSet {
             imageView.layer.cornerRadius = imageView.frame.size.height / 2
             imageView.layer.masksToBounds = true
-            let borderColor = UIColor.white
-            imageView.layer.borderColor = borderColor.cgColor
+            imageView.layer.borderColor = UIColor.white.cgColor
             imageView.layer.borderWidth = 10
         }
     }
