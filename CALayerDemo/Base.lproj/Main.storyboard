@@ -34,7 +34,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Tap Me"/>
                                 <connections>
-                                    <segue destination="2wN-cm-0pl" kind="show" id="r5Z-qD-lzW"/>
+                                    <action selector="tapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lrS-Ol-sev"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -50,6 +50,7 @@
                     <connections>
                         <outlet property="button" destination="xdZ-8w-7zs" id="JQF-aH-YNv"/>
                         <outlet property="imageView" destination="APN-cp-uts" id="07E-lE-y6F"/>
+                        <segue destination="2wN-cm-0pl" kind="show" identifier="showSecondScreen" id="7qG-4j-Xcs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

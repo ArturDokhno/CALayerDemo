@@ -8,6 +8,26 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    var shapeLayer: CAShapeLayer! {
+        didSet {
+            shapeLayer.lineWidth = 20
+            shapeLayer.lineCap = .round
+            shapeLayer.fillColor = nil
+            shapeLayer.strokeEnd = 1
+            shapeLayer.strokeColor = UIColor.white.cgColor
+        }
+    }
+    
+    var overShapeLayer: CAShapeLayer! {
+        didSet {
+            overShapeLayer.lineWidth = 20
+            overShapeLayer.lineCap = .round
+            overShapeLayer.fillColor = nil
+            overShapeLayer.strokeEnd = 0
+            overShapeLayer.strokeColor = UIColor.yellow.cgColor
+        }
+    }
 
     @IBOutlet var imageView: UIImageView! {
         didSet {
@@ -26,11 +46,41 @@ class ViewController: UIViewController {
         }
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        configShapeLayer(shapeLayer)
+        
+        configShapeLayer(overShapeLayer)
+    }
+    
+    func configShapeLayer(_ shapeLayer: CAShapeLayer) {
+        shapeLayer.frame = view.bounds
+        let path = UIBezierPath()
+        path.move(to: CGPoint(x: self.view.frame.width / 2 - 100,
+                              y: self.view.frame.height / 2))
+        path.addLine(to: CGPoint(x: self.view.frame.width / 2 + 100,
+                                 y: self.view.frame.height / 2))
+        shapeLayer.path = path.cgPath
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        shapeLayer = CAShapeLayer()
+        view.layer.addSublayer(shapeLayer)
+        
+        overShapeLayer = CAShapeLayer()
+        view.layer.addSublayer(overShapeLayer)
     }
 
-
+    @IBAction func tapped(_ sender: Any) {
+        
+        overShapeLayer.strokeEnd += 0.2
+        if overShapeLayer.strokeEnd == 1 {
+            performSegue(withIdentifier: "showSecondScreen", sender: self)
+        }
+    }
+    
 }
 
